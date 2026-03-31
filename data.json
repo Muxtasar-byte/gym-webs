@@ -1,0 +1,161 @@
+{
+  "classes": [
+    {
+      "id": "c1",
+      "category": "strength",
+      "title": "Hypertrophy Blueprint",
+      "description": "Engineered programming focusing on progressive overload to consistently build dense, functional muscle tissue without plateaus.",
+      "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800"
+    },
+    {
+      "id": "c2",
+      "category": "cardio",
+      "title": "V02 Max Optimization",
+      "description": "Scientifically structured metabolic conditioning to rapidly strip body fat while maximizing cardiovascular ceiling.",
+      "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800"
+    },
+    {
+      "id": "c3",
+      "category": "recovery",
+      "title": "Neuromuscular Regeneration",
+      "description": "Advanced recovery protocols utilizing active mobility, deep tissue strategies, and CNS reset mechanisms.",
+      "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800"
+    },
+    {
+      "id": "c4",
+      "category": "strength",
+      "title": "Power Kinetics",
+      "description": "Explosive multi-planar movement training designed for athletes requiring raw, unadulterated power output.",
+      "image": "https://images.unsplash.com/photo-1584466977773-e625c37cdd50?q=80&w=800"
+    },
+    {
+      "id": "c5",
+      "category": "cardio",
+      "title": "Lactate Threshold Protocol",
+      "description": "Push past your perceived limits in our precision-calibrated cycle lab. Data-monitored suffer sessions.",
+      "image": "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=80&w=800"
+    },
+    {
+      "id": "c6",
+      "category": "recovery",
+      "title": "Myofascial Architecture",
+      "description": "Targeted clinical therapy to correct structural imbalances, bulletproof joints, and prevent breakdown.",
+      "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800"
+    }
+  ],
+  "trainers": [
+    {
+      "id": "t1",
+      "name": "Marcus Vance",
+      "specialty": "Chief Hypertrophy Architect",
+      "image": "https://images.unsplash.com/photo-1567598508481-65985588e295?q=80&w=600"
+    },
+    {
+      "id": "t2",
+      "name": "Dr. Elena Rodriguez",
+      "specialty": "Director of Biomechanics",
+      "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=600"
+    },
+    {
+      "id": "t3",
+      "name": "David Sterling",
+      "specialty": "Metabolic Optimization Lead",
+      "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600"
+    },
+    {
+      "id": "t4",
+      "name": "Sarah Chen",
+      "specialty": "Tactical Performance Engineer",
+      "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600"
+    }
+  ],
+  "pricing": [
+    {
+      "id": "p1",
+      "tier": "Core Lab",
+      "price": "295",
+      "period": "mo",
+      "features": [
+        "Unrestricted Facility Access",
+        "Initial Body Composition Scan",
+        "App-guided Protocols",
+        "Locker Room Access"
+      ]
+    },
+    {
+      "id": "p2",
+      "tier": "Optimization",
+      "price": "595",
+      "period": "mo",
+      "features": [
+        "Full Core Lab Benefits",
+        "All Performance Protocols",
+        "Monthly InBody Assessments",
+        "Regeneration Zone Access"
+      ]
+    },
+    {
+      "id": "p3",
+      "tier": "Apex",
+      "price": "1250",
+      "period": "mo",
+      "features": [
+        "3x Weekly Private Engineering",
+        "Custom Nutritional Biochemistry",
+        "Daily Recovery Therapeutics",
+        "VIP Priority Scheduling"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "ts1",
+      "quote": "Added 12lbs of lean contractile tissue in 90 days. The data-driven approach removes all the guesswork and ego.",
+      "author": "James H.",
+      "title": "CEO, TechFlow",
+      "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200"
+    },
+    {
+      "id": "ts2",
+      "quote": "Dropped my body fat by 8% and fixed my lower back pain. FitPro isn't a gym; it's a physiological engineering lab.",
+      "author": "Michaela T.",
+      "title": "Executive Director",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200"
+    },
+    {
+      "id": "ts3",
+      "quote": "My V02 max went from 42 to 55 in six months. The architects here don't guess; they measure and optimize every session.",
+      "author": "Marcus R.",
+      "title": "Venture Capitalist",
+      "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200"
+    }
+  ],
+  "transformations": [
+    {
+      "id": "tr1",
+      "name": "Alex Mercer",
+      "timeframe": "12 Weeks",
+      "metric1_label": "Body Fat",
+      "metric1_before": "22%",
+      "metric1_after": "11%",
+      "metric2_label": "Lean Mass",
+      "metric2_before": "165 lbs",
+      "metric2_after": "174 lbs",
+      "image_before": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=400&grayscale=1",
+      "image_after": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=400"
+    },
+    {
+      "id": "tr2",
+      "name": "Sarah Jenkins",
+      "timeframe": "16 Weeks",
+      "metric1_label": "Deadlift",
+      "metric1_before": "135 lbs",
+      "metric1_after": "285 lbs",
+      "metric2_label": "Energy Levels",
+      "metric2_before": "Low",
+      "metric2_after": "Peak",
+      "image_before": "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=400&grayscale=1",
+      "image_after": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=400"
+    }
+  ]
+}

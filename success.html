@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Successful | FitPro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="gym.css">
+    <style>
+        .success-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .success-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            max-width: 500px;
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        .success-box::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), transparent);
+        }
+    </style>
+</head>
+<body>
+    <div class="success-wrapper">
+        <div class="success-box">
+            <i class="fa-solid fa-circle-check" style="font-size: 4rem; color: var(--color-accent); margin-bottom: 1.5rem;"></i>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Welcome to the Lab.</h1>
+            <p class="text-muted" style="margin-bottom: 2rem;">Your application and payment have been successfully processed. An architect will contact you within 24 hours to schedule your onboarding assessment.</p>
+            
+            <div style="background: rgba(204, 255, 0, 0.05); padding: 1.5rem; border-radius: var(--radius-md); border: 1px dashed var(--color-accent); margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;"><i class="fa-solid fa-gift" style="color:var(--color-accent)"></i> Bonus Unlocked</h3>
+                <p style="font-size: 0.9rem; color: var(--color-text-muted);">As a new member, download our proprietary hypertrophy blueprint to prepare for your first session.</p>
+                <a href="#download" class="btn btn--outline mt-4" style="width:100%;" onclick="alert('Download started.')">Download PDF Guide</a>
+            </div>
+
+            <a href="/" class="btn btn--primary" style="width: 100%;">Return to Homepage</a>
+        </div>
+    </div>
+</body>
+</html>

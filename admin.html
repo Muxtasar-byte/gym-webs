@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPro Owner Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root { --bg: #030303; --surface: #121212; --accent: #ccff00; --text: #fff; --muted: #888; --border: rgba(255, 255, 255, 0.1); }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; min-height: 100vh;}
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; margin: 0 0 1rem 0;}
+        
+        .btn { background: var(--accent); color: #000; border: none; padding: 10px 20px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: 0.2s; }
+        .btn:hover { opacity: 0.9; }
+        .btn--outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .input { width: 100%; padding: 12px; height: 48px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); color: #fff; border-radius: 4px; margin-bottom: 1rem;}
+        .input:focus { outline: none; border-color: var(--accent); }
+
+        #auth-view { display: flex; align-items: center; justify-content: center; height: 100vh; }
+        .auth-card { background: var(--surface); padding: 40px; border-radius: 8px; border: 1px solid var(--border); width: 100%; max-width: 400px; text-align: center; }
+        
+        #dashboard-view { display: none; padding: 2rem; max-width: 1400px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 2rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
+        
+        .table-controls { display: flex; justify-content: space-between; margin-bottom: 1rem; gap: 1rem;}
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border); }
+        th { color: var(--muted); cursor: pointer; user-select: none;}
+        th:hover { color: var(--text); }
+        tr:hover { background: rgba(255,255,255,0.02); }
+
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+        .badge.pending { background: rgba(255, 152, 0, 0.1); color: #ff9800; }
+        .badge.contacted { background: rgba(33, 150, 243, 0.1); color: #2196f3; }
+        .badge.closed { background: rgba(156, 39, 176, 0.1); color: #9c27b0; }
+        .badge.paid { background: rgba(76, 175, 80, 0.1); color: #4caf50; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-view">
+        <div class="auth-card">
+            <h2>System Login</h2>
+            <p class="text-muted" style="color:var(--muted); margin-bottom: 2rem;">Authorized personnel only.</p>
+            <form id="login-form">
+                <input type="text" id="username" class="input" placeholder="Username" required>
+                <input type="password" id="password" class="input" placeholder="Password" required>
+                <button type="submit" class="btn" style="width: 100%;">Authenticate</button>
+                <div id="auth-error" style="color:#ff3366; margin-top:1rem; display:none;">Invalid credentials.</div>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard-view">
+        <div class="header">
+            <h2>FitPro <span style="color:var(--accent)">Intelligence</span></h2>
+            <div>
+                <button class="btn btn--outline" onclick="exportCSV()"><i class="fa-solid fa-download"></i> Export CSV</button>
+                <button class="btn btn--outline" onclick="logout()" style="margin-left: 1rem;">Logout</button>
+            </div>
+        </div>
+
+        <!-- Metrics & Charts -->
+        <div class="grid">
+            <div class="card">
+                <h3>Objectives Breakdown</h3>
+                <canvas id="chart-objectives" height="200"></canvas>
+            </div>
+            <div class="card">
+                <h3>Conversion Funnel</h3>
+                <canvas id="chart-funnel" height="200"></canvas>
+            </div>
+            <div class="card" style="display:flex; flex-direction:column; justify-content:center;">
+                <h3 style="color:var(--muted)">Total Pipeline Value</h3>
+                <div id="metric-revenue" style="font-size: 3rem; font-family:'Outfit'; color:var(--accent);">$0</div>
+                <p style="color:var(--muted); font-size:0.9rem; margin-top:auto;">Based on leads labeled 'paid' x $295</p>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="card">
+            <div class="table-controls">
+                <input type="text" id="search" class="input" placeholder="Search names, emails..." style="max-width:300px; margin:0;" oninput="filterData()">
+                <select id="filter-status" class="input" style="max-width:200px; margin:0;" onchange="filterData()">
+                    <option value="all">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="closed">Closed</option>
+                    <option value="paid">Paid</option>
+                </select>
+            </div>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th onclick="sortData('id')">ID <i class="fa-solid fa-sort"></i></th>
+                            <th onclick="sortData('created_at')">Date <i class="fa-solid fa-sort"></i></th>
+                            <th onclick="sortData('name')">Name <i class="fa-solid fa-sort"></i></th>
+                            <th onclick="sortData('objective')">Objective <i class="fa-solid fa-sort"></i></th>
+                            <th onclick="sortData('trainer')">Trainer <i class="fa-solid fa-sort"></i></th>
+                            <th onclick="sortData('status')">Status <i class="fa-solid fa-sort"></i></th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let token = localStorage.getItem('fitpro_jwt');
+        let leadsData = [];
+        let filteredData = [];
+        let sortKey = 'created_at';
+        let sortAsc = false;
+        let pollInterval;
+
+        let charts = {
+            objectives: null,
+            funnel: null
+        };
+
+        // Init
+        if (token) showDashboard();
+        else showAuth();
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errEl = document.getElementById('auth-error');
+
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                
+                token = data.token;
+                localStorage.setItem('fitpro_jwt', token);
+                errEl.style.display = 'none';
+                showDashboard();
+            } catch (err) {
+                errEl.style.display = 'block';
+            }
+        });
+
+        function showAuth() {
+            document.getElementById('auth-view').style.display = 'flex';
+            document.getElementById('dashboard-view').style.display = 'none';
+            if (pollInterval) clearInterval(pollInterval);
+        }
+
+        function showDashboard() {
+            document.getElementById('auth-view').style.display = 'none';
+            document.getElementById('dashboard-view').style.display = 'block';
+            fetchData();
+            // Secure Polling every 10 seconds
+            pollInterval = setInterval(fetchData, 10000);
+        }
+
+        function logout() {
+            localStorage.removeItem('fitpro_jwt');
+            token = null;
+            showAuth();
+        }
+
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/leads?limit=1000', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (res.status === 401) { logout(); return; }
+                const data = await res.json();
+                
+                leadsData = data.leads;
+                filterData(); // Applies filters, sorts, renders, and updates charts
+            } catch (err) {
+                console.error("Data fetch error", err);
+            }
+        }
+
+        function filterData() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const status = document.getElementById('filter-status').value;
+
+            filteredData = leadsData.filter(l => {
+                const matchesSearch = l.name.toLowerCase().includes(query) || l.email.toLowerCase().includes(query);
+                const matchesStatus = status === 'all' || l.status === status;
+                return matchesSearch && matchesStatus;
+            });
+
+            // Sort
+            filteredData.sort((a, b) => {
+                let valA = a[sortKey];
+                let valB = b[sortKey];
+                if (valA < valB) return sortAsc ? -1 : 1;
+                if (valA > valB) return sortAsc ? 1 : -1;
+                return 0;
+            });
+
+            renderTable();
+            updateCharts();
+        }
+
+        function sortData(key) {
+            if (sortKey === key) sortAsc = !sortAsc;
+            else { sortKey = key; sortAsc = true; }
+            filterData();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('table-body');
+            if (filteredData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted);">No leads found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filteredData.map(l => {
+                const date = new Date(l.created_at).toLocaleDateString();
+                return `
+                    <tr>
+                        <td>#${l.id}</td>
+                        <td style="color:var(--muted)">${date}</td>
+                        <td>
+                            <strong>${l.name}</strong><br>
+                            <span style="color:var(--muted); font-size:0.8rem">${l.email} • ${l.phone || 'N/A'}</span>
+                        </td>
+                        <td>${l.objective}</td>
+                        <td>${l.trainer}</td>
+                        <td><span class="badge ${l.status}">${l.status}</span></td>
+                        <td>
+                            <select class="input" style="height:32px; padding:0 8px; margin:0;" onchange="updateStatus(${l.id}, this.value)">
+                                <option value="" disabled selected>Update</option>
+                                <option value="pending">Pending</option>
+                                <option value="contacted">Contacted</option>
+                                <option value="closed">Closed</option>
+                                <option value="paid">Paid</option>
+                            </select>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        async function updateStatus(id, newStatus) {
+            try {
+                const res = await fetch(`/api/leads/${id}/status`, {
+                    method: 'PATCH',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` 
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                if(res.ok) fetchData();
+            } catch (err) {
+                console.error("Status update error", err);
+            }
+        }
+
+        function updateCharts() {
+            // Objective Breakdown
+            const objs = leadsData.reduce((acc, l) => { acc[l.objective] = (acc[l.objective]||0)+1; return acc; }, {});
+            if (charts.objectives) charts.objectives.destroy();
+            charts.objectives = new Chart(document.getElementById('chart-objectives'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(objs),
+                    datasets: [{ data: Object.values(objs), backgroundColor: ['#ccff00', '#2196f3', '#9c27b0'], borderWidth: 0 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels:{color:'#fff'} } } }
+            });
+
+            // Funnel Stats
+            const stats = leadsData.reduce((acc, l) => { acc[l.status] = (acc[l.status]||0)+1; return acc; }, {pending:0, contacted:0, closed:0, paid:0});
+            if (charts.funnel) charts.funnel.destroy();
+            charts.funnel = new Chart(document.getElementById('chart-funnel'), {
+                type: 'bar',
+                data: {
+                    labels: ['Pending', 'Contacted', 'Closed', 'Paid'],
+                    datasets: [{ label: 'Leads', data: [stats.pending, stats.contacted, stats.closed, stats.paid], backgroundColor: '#ccff00' }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: {color:'#888', stepSize:1} }, x: { ticks:{color:'#888'} } }, plugins: { legend: { display: false } } }
+            });
+
+            // Revenue calculation
+            const paidCount = leadsData.filter(l => l.status === 'paid').length;
+            document.getElementById('metric-revenue').textContent = '$' + (paidCount * 295).toLocaleString();
+        }
+
+        function exportCSV() {
+            if (leadsData.length === 0) return;
+            const headers = ['ID', 'Date', 'Name', 'Email', 'Phone', 'Objective', 'Trainer', 'Payment', 'Status'];
+            const rows = filteredData.map(l => [
+                l.id, new Date(l.created_at).toISOString(),
+                `"${l.name}"`, l.email, l.phone, l.objective, l.trainer, l.payment, l.status
+            ]);
+            
+            const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `fitpro_leads_${new Date().getTime()}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

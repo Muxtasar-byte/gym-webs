@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPro | Elite Performance Lab | Application</title>
+    <!-- SEO & Meta -->
+    <meta name="description" content="Stop wasting time with generic workouts. We engineer transformations through data-driven protocols, world-class coaching, and elite facilities.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="gym.css">
+</head>
+<body class="theme-dark">
+
+    <!-- NAV -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar__content">
+            <a href="#" class="logo">FIT<span class="logo__accent">PRO</span></a>
+
+            <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav" data-action="toggleNav">
+                <span class="hamburger__line" aria-hidden="true"></span>
+                <span class="hamburger__line" aria-hidden="true"></span>
+                <span class="hamburger__line" aria-hidden="true"></span>
+            </button>
+
+            <nav id="nav" class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#proof" class="nav__link" data-action="navLink">Proof</a></li>
+                    <li class="nav__item"><a href="#transformation" class="nav__link" data-action="navLink">Results</a></li>
+                    <li class="nav__item"><a href="#programs" class="nav__link" data-action="navLink">Protocols</a></li>
+                    <li class="nav__item"><a href="#architects" class="nav__link" data-action="navLink">Architects</a></li>
+                    <li class="nav__item"><a href="#pricing" class="nav__link" data-action="navLink">Investment</a></li>
+                    <li class="nav__item"><a href="#booking" class="btn btn--primary btn--sm" data-action="navLink">Claim Your Audit</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app-root">
+        <!-- 1. HERO SECTION -->
+        <section class="hero" id="hero">
+            <div class="hero__overlay"></div>
+            <div class="container hero__content">
+                <div class="urgency-badge reveal-up" id="hero-scarcity">
+                    <span class="urgency-badge__pulse"></span>
+                    <span class="urgency-badge__text">Only <strong id="spots-left">5</strong> Transformation Audit spots remaining this month</span>
+                </div>
+                
+                <h1 class="hero__title reveal-up delay-1">Engineered Growth. <br><span class="hero__title--accent">Zero Guesswork.</span></h1>
+                
+                <p class="hero__subtitle reveal-up delay-2">We replace hope with hard data. Experience physiological transformation through precision protocols, elite coaching, and a capped-membership performance lab.</p>
+                
+                <div class="hero__actions reveal-up delay-3">
+                    <a href="#booking" class="btn btn--primary btn--lg">
+                        Claim Your Transformation Audit <i class="fa-solid fa-arrow-right btn__icon"></i>
+                    </a>
+                </div>
+                
+                <div class="hero__authority reveal-up delay-4">
+                    <span class="hero__authority-text">Trusted by elite performers in</span>
+                    <div class="hero__authority-logos">
+                        <i class="fa-brands fa-nfl"></i>
+                        <i class="fa-solid fa-medal"></i>
+                        <span>Fortune 500 CEOs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SOCIAL PROOF / STATS -->
+        <section class="section proof" id="proof">
+            <div class="container">
+                <div class="section__header text-center reveal-up">
+                    <h2 class="section__title">Measurable <span class="section__title--accent">Outcomes</span></h2>
+                    <p class="section__desc">Data doesn't lie. Our protocols are engineered for guaranteed physiological adaptation.</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card reveal-up delay-1">
+                        <div class="stat-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="stat-card__number" data-target="2500" data-stat>0</div>
+                        <div class="stat-card__label">High-Performers Transformed</div>
+                    </div>
+                    <div class="stat-card reveal-up delay-2">
+                        <div class="stat-card__icon"><i class="fa-solid fa-dumbbell"></i></div>
+                        <div class="stat-card__number" data-target="18.5" data-suffix="%" data-stat>0</div>
+                        <div class="stat-card__label">Avg. Strength Increase (90 Days)</div>
+                    </div>
+                    <div class="stat-card reveal-up delay-3">
+                        <div class="stat-card__icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <div class="stat-card__number" data-target="8.2" data-suffix="%" data-stat>0</div>
+                        <div class="stat-card__label">Avg. Body Fat Reduction</div>
+                    </div>
+                </div>
+
+                <!-- Testimonials Grid (Dynamically Injected) -->
+                <div id="testimonials-mount" class="testimonials-grid mt-16 reveal-up delay-2">
+                    <!-- Skeletons -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TRANSFORMATION SECTION (Before/After) -->
+        <section class="section transformation" id="transformation">
+            <div class="container">
+                <div class="section__header text-center reveal-up">
+                    <h2 class="section__title">The <span class="section__title--accent">Evidence</span></h2>
+                    <p class="section__desc">Visual proof of our data-driven engineering.</p>
+                </div>
+                
+                <!-- Transformations injected here -->
+                <div id="transformations-mount" class="transformations-grid mt-8">
+                    <!-- Skeletons -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROGRAMS -->
+        <section class="section programs bg-darker" id="programs">
+            <div class="container">
+                <div class="section__header reveal-up">
+                    <h2 class="section__title">Precision <span class="section__title--accent">Protocols</span></h2>
+                    <p class="section__desc">Scientific methodologies tailored to your specific physiological objectives.</p>
+                </div>
+
+                <div class="programs__filters reveal-up delay-1" id="programs-filters" role="group" aria-label="Program filters">
+                    <button class="btn btn--filter is-active" data-action="filterPrograms" data-filter="all">All Protocols</button>
+                    <button class="btn btn--filter" data-action="filterPrograms" data-filter="strength">Hypertrophy & Power</button>
+                    <button class="btn btn--filter" data-action="filterPrograms" data-filter="cardio">Metabolic Conditioning</button>
+                    <button class="btn btn--filter" data-action="filterPrograms" data-filter="recovery">Regeneration</button>
+                </div>
+
+                <!-- Programs injected here -->
+                <div id="programs-mount" class="programs-grid mt-8">
+                    <!-- Skeletons -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. COACH AUTHORITY -->
+        <section class="section architects" id="architects">
+            <div class="container">
+                <div class="section__header text-center reveal-up">
+                    <h2 class="section__title">Elite Performance <span class="section__title--accent">Architects</span></h2>
+                    <p class="section__desc">You aren't just getting trainers. You are hiring industry-leading performance engineers.</p>
+                </div>
+                
+                <!-- Trainers injected here -->
+                <div id="trainers-mount" class="trainers-grid mt-8">
+                    <!-- Skeletons -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. PRICING -->
+        <section class="section pricing bg-darker" id="pricing">
+            <div class="container">
+                <div class="section__header text-center reveal-up">
+                    <h2 class="section__title">Lab Access & <span class="section__title--accent">Investment</span></h2>
+                    <p class="section__desc">Membership is fiercely guarded to ensure an unrestricted, elite environment.</p>
+                </div>
+                
+                <!-- Pricing injected here -->
+                <div id="pricing-mount" class="pricing-grid mt-8">
+                    <!-- Skeletons -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. OFFER SECTION (Lead Magnet) -->
+        <section class="section offer" id="offer">
+            <div class="container">
+                <div class="offer-card reveal-up">
+                    <div class="offer-card__content">
+                        <span class="offer-card__tag">Free Resource</span>
+                        <h2 class="offer-card__title">The 90-Day <span class="offer-card__title--accent">Hypertrophy Blueprint</span></h2>
+                        <p class="offer-card__desc">Not ready for the lab? Download the exact protocol we use to add 10lbs of lean tissue to our executive clients. Complete with nutritional biochemistry guidelines.</p>
+                        <form id="lead-magnet-form" class="offer-form mt-6">
+                            <div class="input-group">
+                                <input type="email" class="input input--light" placeholder="Enter your best email" required>
+                                <button type="submit" class="btn btn--primary">Get The Blueprint</button>
+                            </div>
+                            <p class="offer-form__trust"><i class="fa-solid fa-lock"></i> 100% Free. No Spam.</p>
+                        </form>
+                    </div>
+                    <div class="offer-card__image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600" alt="Hypertrophy Blueprint Book" class="offer-card__image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. BOOKING SYSTEM & 9. TRUST / RISK REVERSAL -->
+        <section class="section booking pulse-bg" id="booking">
+            <div class="container">
+                <div class="booking-layout">
+                    <!-- Left: Trust & Risk Reversal -->
+                    <div class="booking-trust reveal-up">
+                        <h2 class="section__title">Secure Your <br><span class="section__title--accent">Audit</span></h2>
+                        <p class="section__desc">This is an application. We only accept individuals deeply committed to personal excellence. Space is strictly limited.</p>
+                        
+                        <div class="trust-badge mt-8 reveal-up delay-1">
+                            <div class="trust-badge__icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="trust-badge__content">
+                                <h4 class="trust-badge__title">100% Results Guarantee</h4>
+                                <p class="trust-badge__desc">Follow our protocol for 90 days. If you don't see measured physiological transformation, we refund your investment unconditionally.</p>
+                            </div>
+                        </div>
+
+                        <div class="trust-badge mt-6 reveal-up delay-2">
+                            <div class="trust-badge__icon"><i class="fa-solid fa-user-lock"></i></div>
+                            <div class="trust-badge__content">
+                                <h4 class="trust-badge__title">Strict Capacity Limits</h4>
+                                <p class="trust-badge__desc">We cap our membership to maintain an unrestricted, zero-wait environment. Applications are reviewed within 24 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Multi-Step Booking Form -->
+                    <div class="booking-form-wrapper reveal-up delay-3">
+                        <form id="booking-form" class="multi-step-form glass-panel">
+                            <!-- Progress Bar -->
+                            <div class="form-progress">
+                                <div class="form-progress__bar" id="form-progress-bar" style="width: 33.33%;"></div>
+                                <div class="form-progress__steps">
+                                    <span class="step is-active" id="step-nav-1">1. Focus</span>
+                                    <span class="step" id="step-nav-2">2. Commitment</span>
+                                    <span class="step" id="step-nav-3">3. Details</span>
+                                </div>
+                            </div>
+
+                            <!-- Step 1 -->
+                            <div class="form-step is-active" id="form-step-1">
+                                <h3 class="form-step__title">What is your primary physiological objective?</h3>
+                                <div class="radio-grid mt-4">
+                                    <label class="radio-card">
+                                        <input type="radio" name="objective" value="hypertrophy" required>
+                                        <div class="radio-card__content">
+                                            <i class="fa-solid fa-dumbbell"></i>
+                                            <span>Hypertrophy & Strength</span>
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="objective" value="fatloss">
+                                        <div class="radio-card__content">
+                                            <i class="fa-solid fa-fire"></i>
+                                            <span>Rapid Fat Loss</span>
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="objective" value="performance">
+                                        <div class="radio-card__content">
+                                            <i class="fa-solid fa-bolt"></i>
+                                            <span>Athletic Performance</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-actions mt-8">
+                                    <button type="button" class="btn btn--primary btn--full" data-action="nextStep" data-step="1">Continue <i class="fa-solid fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="form-step" id="form-step-2">
+                                <h3 class="form-step__title">Select your preferred architect (Trainer)</h3>
+                                <p class="form-step__desc mb-4 text-muted">Who do you want to work with?</p>
+                                <div class="input-group-vertical mt-4">
+                                    <label class="label">Trainer</label>
+                                    <select name="trainer" id="trainer-select" class="input" required>
+                                        <option value="">Choose your trainer...</option>
+                                        <option value="any">No Preference / Next Available</option>
+                                        <!-- Trainers will be populated via JS -->
+                                    </select>
+                                </div>
+                                <div class="form-actions form-actions--split mt-8">
+                                    <button type="button" class="btn btn--outline" data-action="prevStep" data-step="2">Back</button>
+                                    <button type="button" class="btn btn--primary" data-action="nextStep" data-step="2">Continue <i class="fa-solid fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="form-step" id="form-step-3">
+                                <h3 class="form-step__title">Details & Payment</h3>
+                                <div class="input-group-vertical mt-4">
+                                    <label class="label">Legal Name</label>
+                                    <input type="text" name="name" class="input" placeholder="John Doe" required minlength="2">
+                                </div>
+                                <div class="input-group-vertical mt-4">
+                                    <label class="label">Primary Email</label>
+                                    <input type="email" name="email" class="input" placeholder="john@example.com" required>
+                                </div>
+                                <div class="input-group-vertical mt-4">
+                                    <label class="label">Phone (Optional)</label>
+                                    <input type="tel" name="phone" class="input" placeholder="(555) 000-0000">
+                                </div>
+                                
+                                <h4 class="form-step__title" style="margin-top: 1.5rem; font-size: 1.25rem;">Payment Method</h4>
+                                <div class="radio-grid mt-2">
+                                    <label class="radio-card">
+                                        <input type="radio" name="payment" value="card" required checked>
+                                        <div class="radio-card__content" style="padding: 0.75rem;">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                            <span>Credit Card (Online)</span>
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="payment" value="manual">
+                                        <div class="radio-card__content" style="padding: 0.75rem;">
+                                            <i class="fa-solid fa-money-bill"></i>
+                                            <span>Pay Manually In-Person</span>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="form-actions form-actions--split mt-8">
+                                    <button type="button" class="btn btn--outline" data-action="prevStep" data-step="3">Back</button>
+                                    <button type="submit" class="btn btn--primary btn--submit" id="submit-btn" data-action="submitBooking">
+                                        <span class="btn__text">Submit Application</span>
+                                        <span class="btn__loader"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+                                    </button>
+                                </div>
+                                <div id="form-message" class="form-message mt-4"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer__grid">
+            <div class="footer__brand">
+                <a href="#" class="logo">FIT<span class="logo__accent">PRO</span></a>
+                <p class="footer__desc mt-4">The premier performance lab for individuals committed to elite physical excellence. No templates. No guesswork.</p>
+                <div class="social-links mt-6">
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer__nav">
+                <h4 class="footer__title">Navigation</h4>
+                <ul class="footer__list mt-4">
+                    <li><a href="#proof" class="footer__link">Outcomes</a></li>
+                    <li><a href="#programs" class="footer__link">Protocols</a></li>
+                    <li><a href="#architects" class="footer__link">Architects</a></li>
+                    <li><a href="#pricing" class="footer__link">Investment</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__contact">
+                <h4 class="footer__title">Headquarters</h4>
+                <ul class="footer__list mt-4">
+                    <li class="footer__contact-item"><i class="fa-solid fa-location-dot"></i> 123 Performance Avenue, Pinnacle NY</li>
+                    <li class="footer__contact-item"><i class="fa-solid fa-phone"></i> +1 (555) 999-ELITE</li>
+                    <li class="footer__contact-item"><i class="fa-solid fa-envelope"></i> applications@fitprolab.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <div class="container footer__bottom-inner">
+                <p>&copy; 2026 FitPro Elite Performance Lab. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Logic -->
+    <script src="gym.js"></script>
+</body>
+</html>
